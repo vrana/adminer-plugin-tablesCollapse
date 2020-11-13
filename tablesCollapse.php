@@ -30,6 +30,7 @@ class AdminerTablesCollapse
 				$("[data-collapse-source]").on("click", function(evt) {
 					evt.preventDefault();
 					let source = $(this).attr("data-collapse-source");
+					console.log(source);
 					let target = $("[data-collapse-target='"+(source)+"']");
 					let collapsed = target.attr("data-collapsed");
 
@@ -99,11 +100,11 @@ class AdminerTablesCollapse
 		if(substr((string)$group_name,0,1) == "_") {
 			$is_group = true;
 
-			// se for grupo mas se tiver apenas um elemento
+			/*// se for grupo mas se tiver apenas um elemento
 			if(count($line) == 1) {
 				$line = $line[0];
 				$is_group = false;
-			}
+			}*/
 		}
 
 		if($is_group) { // GRUPO
@@ -111,9 +112,7 @@ class AdminerTablesCollapse
 			$path .= $group_name;
 
 			// verifica se a tabela contem o nome do grupo
-			$active = false;
-			if(strpos($this->get_actual_table_name(),$path) === 0) // apenas se o nome da tabela estiver no inicio da path
-				$active = true;
+			$active = (strpos($this->get_actual_table_name(),$path) === 0); // apenas se o nome da tabela estiver no inicio da path
 
 			// procura no cookie tambem, para ver se algum bloco esta aberto
 			foreach($cookie as $c)
