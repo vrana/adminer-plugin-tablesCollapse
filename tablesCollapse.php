@@ -19,9 +19,9 @@ class AdminerTablesCollapse
 
 	function head() {
 		?>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"<?= nonce() ?>></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"<?= nonce() ?>></script>
-		<script type="text/javascript"<?= nonce() ?>>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"<?= Adminer\nonce() ?>></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"<?= Adminer\nonce() ?>></script>
+		<script type="text/javascript"<?= Adminer\nonce() ?>>
 			let cookie_collapse = [];
 			$(document).ready(function() {
 				if ($.cookie("adminer_table_collapse") !== undefined)
@@ -135,10 +135,10 @@ class AdminerTablesCollapse
 
 			$active = in_array($name,$actions);
 
-			if(support("table") || support("indexes")) {
+			if(Adminer\support("table") || Adminer\support("indexes")) {
 				echo '<div class="line">';
-					echo '<a class="relations" href="'.h(ME).'select='.urlencode($line["Name"]).'" title="Browser"></a>';
-					echo '<a href="'.h(ME).'table='.urlencode($name).'"'.bold($active,(is_view($line) ? "view" : ""))."' title=\"Select\" data-link='main'>$name</a>";
+					echo '<a class="relations" href="'.Adminer\h(Adminer\ME).'select='.urlencode($line["Name"]).'" title="Browser"></a>';
+					echo '<a href="'.Adminer\h(Adminer\ME).'table='.urlencode($name).'"'.Adminer\bold($active,(Adminer\is_view($line) ? "view" : ""))."' title=\"Select\" data-link='main'>$name</a>";
 				echo '</div>';
 			}
 		}
