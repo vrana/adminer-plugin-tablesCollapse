@@ -116,20 +116,20 @@ class AdminerTablesCollapse
 
 			// procura no cookie tambem, para ver se algum bloco esta aberto
 			foreach($cookie as $c)
-				if($c == Adminer::database().$path)
+				if($c == Adminer\adminer()->database().$path)
 					$active = true;
 
-			echo "<div class='line' data-collapse-source='".(Adminer::database().$path)."'>";
+			echo "<div class='line' data-collapse-source='".(Adminer\adminer()->database().$path)."'>";
 				echo '<span class="package"></span>';
 				echo '<a href="#">'.($group_name).'</a>';
 			echo '</div>';
 
-			echo '<div data-collapse-target="'.(Adminer::database().$path).'" data-collapsed="'.($active ? "false" : "true").'">';
+			echo '<div data-collapse-target="'.(Adminer\adminer()->database().$path).'" data-collapsed="'.($active ? "false" : "true").'">';
 			foreach($line as $group_name => $gtmp)
 				$this->tables_print_line($gtmp,$group_name,$actions,$cookie,$path."__");
 			echo '</div>';
 		} else { //LINHA FINAL
-			$name = Adminer::tableName($line);
+			$name = Adminer\adminer()->tableName($line);
 			if($name == "")
 				return;
 
